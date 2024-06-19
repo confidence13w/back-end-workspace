@@ -27,22 +27,28 @@ WHERE 2 <= price and price <= 4
       AND actors LIKE '%BOB%';
 
 -- 5. address 테이블에서 district가 비어있지 않고 앞에 숫자 제외 주소만 10개 조회
-SELECT address, district
-FROM address;
+SELECT address, district ' '
+FROM address
+WHERE district IS NOT NULL
+ORDER BY district;
 
+-- 6. customer_list 테이블에서 id가 6인 사람부터 10명 조회 ##완료##
+SELECT id, name
+FROM customer_list
+WHERE id >= 6 and id <= 15;
 
--- 6. customer_list 테이블에서 id가 6인 사람부터 10명 조회
-SELECT id
-FROM customer_list;
-
--- 7. actor 테이블에서 J로 시작하는 이름과 글자수 조회 (공백 X, 정렬은 글자수가 많은 사람 순으로)
-SELECT rpad(first_name, 18, last_name) 이름, char_length(rpad(first_name, 18, last_name)) 
+-- 7. actor 테이블에서 J로 시작하는 이름과 글자수 조회 (공백 X, 정렬은 글자수가 많은 사람 순으로) ##완료##
+SELECT concat(first_name, ' ', last_name) 이름,
+       char_length(concat(first_name, last_name))
 FROM actor
-WHERE first_name LIKE 'J%';
+WHERE first_name LIKE 'J%'
+ORDER BY char_length(concat(first_name, last_name)) DESC;
 
 -- 8. film 테이블에서 description에서 of 이전 문장만 중복 없이 10개만 추출해서 조회
-SELECT substr(description)
-FROM film;
+SELECT DISTINCT description
+FROM film
+WHERE description LIKE 'A Unbelieveable%';
+
 -- 9. film 테이블에서 replacement_cost 최소 비용과 최대 비용 조회 ##완료##
 SELECT 
 	min(replacement_cost),
