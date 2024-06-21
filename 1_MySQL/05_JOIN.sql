@@ -242,10 +242,11 @@ SELECT emp_name, emp_no, dept_title, job_name
 FROM employee
 	JOIN department ON (dept_code = dept_id)
 	JOIN job USING (job_code)
-WHERE substr(emp_no, 8, 1) = 2 AND emp_no LIKE '7%' AND emp_name LIKE '전%';
+-- WHERE substr(emp_no, 8, 1) = 2 AND emp_no LIKE '7%' AND emp_name LIKE '전%';
+WHERE emp_no LIKE '7_____-2%' AND emp_name LIKE '전%';
 
 -- 3. 보너스를 받은 직원들의 직원명, 보너스, 연봉, 부서명, 근무지역 조회 
-SELECT emp_name, bonus, format(salary * 12, 0), dept_title, local_name
+SELECT emp_name, bonus, format((salary + salary * bonus) *12, 0), dept_title, local_name
 FROM employee
 	JOIN job USING (job_code)
     JOIN department ON (dept_code = dept_id)
@@ -258,13 +259,21 @@ FROM employee
     JOIN department ON (dept_code = dept_id)
     JOIN location ON (local_code = location_id)
 	JOIN national USING (national_code)
-WHERE local_code = 'L1' OR local_code = 'L2';
+-- WHERE local_code = 'L1' OR local_code = 'L2';
+WHERE national_name IN ('한국', '일본');
 
 -- 5. 각 부서별 평균 급여를 조회하여 부서명, 평균 급여 조회 
-
+SELECT dept_title, avg(salary)
+FROM employee
+	JOIN department ON (dept_code = dept_id)
+GROUP BY dept_title;
 
 -- 6. 각 부서별 총 급여의 합이 1000만원 이상인 부서명, 급여 합 조회 
-
+SELECT dept_title, sum(salary)
+FROM employee
+	JOIN department ON (dept_code = dept_id)
+GROUP BY dept_title
+HAVING sum(salary) >= 10000000;
 
 -- 7. 사번, 직원명, 직급명, 급여 등급, 구분 조회 
 --    이때 구분에 해당하는 값은 아래 참고!
@@ -272,25 +281,42 @@ WHERE local_code = 'L1' OR local_code = 'L2';
 --    급여 등급이 S3, S4인 경우 '중급'
 --    급여 등급이 S5, S6인 경우 '초급'
 SELECT emp_id, emp_name, job_name, sal_level,
-	if(sal_level = 'S1' or 'S2', '고급', 
-    if(sal_level = 'S3' or 'S4', '중급', '초급'))
+	if(sal_level IN ('S1', 'S2'), '고급', 
+    if(sal_level IN ('S3', 'S4'), '중급', '초급')) 구분,
+    CASE WHEN sal_level IN ('S1', 'S2') THEN '고급'
+		 WHEN sal_level IN ('S3', 'S4') THEN '중급'
+         ELSE '초급'
+	END 구분2
 FROM employee
 	JOIN job USING (job_code)
 	JOIN sal_grade ON (min_sal <= salary AND salary <= max_sal);
 
 -- 8. 보너스를 받지 않은 직원들 중 직급 코드가 J4 또는 J7인 직원들의 직원명, 직급명, 급여 조회 
+SELECT emp_name, job_name, salary
+FROM employee
+	JOIN job USING (job_code)
+WHERE bonus IS NULL AND job_code = 'J4' OR job_code = 'J7';
 
-
--- 9. 부서가 있는 직원들의 직원명, 직급명, 부서명, 근무지역 조회 
-
+-- 9. 부서가 있는 직원들의 직원명, 직급명, 부서명, 근무지역 조회
+--    INNER JOIN을 하는 경우 NULL이 포함되어 있는 것처럼 일치하는 걸 못 찾는다면 제외 
+SELECT emp_name, job_name, dept_title, local_name
+FROM employee
+    JOIN department ON (dept_code = dept_id)
+	JOIN job USING (job_code)
+    JOIN location ON (local_code = location_id)
+WHERE dept_title IS NOT NULL;
 
 -- 10. 해외영업팀에 근무하는 직원들의 직원명, 직급명, 부서코드, 부서명 조회 
-
+SELECT emp_name, job_name, dept_id, dept_title
+FROM employee
+    JOIN department ON (dept_code = dept_id)
+	JOIN job USING (job_code)
+WHERE dept_id IN ('D5', 'D6', 'D7');
 
 -- 11. 이름에 '형'자가 들어있는 직원들의 사번, 직원명, 직급명 조회 
-SELECT emp_id, emp_name, dept_title
+SELECT emp_id, emp_name, job_name
 FROM employee
-	JOIN department ON (dept_code = dept_id)
+	JOIN job USING (job_code)
 WHERE emp_name LIKE '%형%';
 
 -- 12. 사번, 사원명, 부서명, 직급명, 지역명, 국가명, 급여등급 조회
