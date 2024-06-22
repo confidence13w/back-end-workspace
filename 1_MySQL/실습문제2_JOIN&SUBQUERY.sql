@@ -41,8 +41,28 @@ FROM actor
 WHERE title = 'NOON PAPI';
 
 -- 4. 각 카테고리별 이메일이 JOYCE.EDWARDS@sakilacustomer.org인 고객이 빌린 DVD 대여 수 조회
-SELECT category, count
+SELECT name category, count(customer_id)
+FROM category
+	JOIN film_category USING (category_id)
+    JOIN film USING (film_id)
+    JOIN inventory USING (film_id)
+    JOIN rental USING (inventory_id)
+WHERE customer_id = (SELECT customer_id
+						FROM customer
+						WHERE email = 'JOYCE.EDWARDS@sakilacustomer.org')
+GROUP BY name;
 
 -- 5. 이메일이 JOYCE.EDWARDS@sakilacustomer.org인 고객이 가장 최근에 빌린 영화 제목과 영화 내용을 조회 
-
+SELECT title, description
+FROM category
+	JOIN film_category USING (category_id)
+    JOIN film USING (film_id)
+    JOIN inventory USING (film_id)
+    JOIN rental USING (inventory_id)
+WHERE customer_id = (SELECT customer_id
+						FROM customer
+						WHERE email = 'JOYCE.EDWARDS@sakilacustomer.org')
+GROUP BY title, description, rental_date
+ORDER BY rental_date DESC
+LIMIT 1;
 
