@@ -32,7 +32,7 @@ CREATE TABLE book(
 	bk_no INT PRIMARY KEY AUTO_INCREMENT,
     bk_title VARCHAR(30) NOT NULL,
     bk_author VARCHAR(30) NOT NULL,
-    bk_price VARCHAR(30),
+    bk_price INT,
     bk_pub_no INT,
     FOREIGN KEY (bk_pub_no) REFERENCES publisher(pub_no)
 );
@@ -45,7 +45,8 @@ VALUES('3','개발자가 영어도 잘해야 하나요?', '최희철', '27000', 
 INSERT INTO book(bk_no, bk_title, bk_author, bk_price, bk_pub_no)
 VALUES('4','피플웨어', '톰 드마르코', '16800', '2');
 INSERT INTO book(bk_no, bk_title, bk_author, bk_price, bk_pub_no)
-VALUES('5','그로스 해킹', '라이언 홀리데이', '13800', '3');
+VALUES('5','그로스 
+해킹', '라이언 홀리데이', '13800', '3');
 
 SELECT * FROM book;
 
@@ -108,5 +109,21 @@ INSERT INTO rent VALUES('5', '1', '5', current_date());
 SELECT * FROM rent;
 
 -- 5. 2번 도서를 대여한 회원의 이름, 아이디, 대여일, 반납 예정일(대여일 + 7일)을 조회하시오.
+SELECT member_name "회원 이름",
+	   member_id "아이디", 
+       rent_date "대여일", 
+       adddate(rent_date, INTERVAL 7 DAY) "반납 예정일"
+FROM rent
+	JOIN member ON (member_no = rent_mem_no)
+WHERE rent_book_no = '2';
 
 -- 6. 회원번호가 1번인 회원이 대여한 도서들의 도서명, 출판사명, 대여일, 반납예정일을 조회하시오.
+SELECT bk_title "도서명",
+	   pub_name "출판사명",
+       rent_date "대여일",
+       adddate(rent_date, INTERVAL 7 DAY) "반납 예정일"
+FROM publisher
+	JOIN book ON (pub_no = bk_pub_no)
+	JOIN rent ON (bk_no = rent_book_no)
+    JOIN member ON (rent_mem_no = member_no)
+WHERE member_no = 1;
