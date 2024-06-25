@@ -22,7 +22,7 @@ FROM customer
     JOIN address USING (address_id)	
     JOIN city USING (city_id)
     JOIN country USING (country_id)
-WHERE first_name LIKE 'TRACY%';
+WHERE first_name = "TRACY";
 
 -- 2. 배우 JULIA MCQUEEN이 찍은 영화 제목 조회 (title 기준 정렬 10개까지)
 
@@ -31,6 +31,7 @@ FROM actor
 	JOIN film_actor USING (actor_id)
 	JOIN film USING (film_id)
 WHERE first_name = 'JULIA'
+ORDER BY title
 LIMIT 10;
 
 -- 3. 영화 NOON PAPI에 나오는 배우들의 이름 조회
@@ -40,11 +41,20 @@ FROM actor
 	JOIN film USING (film_id)
 WHERE title = 'NOON PAPI';
 
+-- >> 서브쿼리로도 가능하지만 추천은 안함
+-- >> 사실상 조회해야 되는게 actor 테이블만 필요
+SELECT first_name, last_name
+FROM actor
+WHERE actor_id IN (SELECT actor_id
+					FROM film_actor
+					WHERE film_id = (SELECT film_id
+									FROM film
+									WHERE title = 'NOON PAPI'));
+
 -- 4. 각 카테고리별 이메일이 JOYCE.EDWARDS@sakilacustomer.org인 고객이 빌린 DVD 대여 수 조회
 SELECT name category, count(customer_id)
 FROM category
 	JOIN film_category USING (category_id)
-    JOIN film USING (film_id)
     JOIN inventory USING (film_id)
     JOIN rental USING (inventory_id)
 WHERE customer_id = (SELECT customer_id
@@ -66,3 +76,11 @@ GROUP BY title, description, rental_date
 ORDER BY rental_date DESC
 LIMIT 1;
 
+SELECT title, description
+FROM rental
+	JOIN inventory USING (inventory_id)
+    JOIN film USING (film_id)
+    JOIN customer USING (customer_id)
+WHERE email = 'JOYCE.EDWARDS@sakilacustomer.org'
+ORDER BY rental_date DESC
+LIMIT 1;
