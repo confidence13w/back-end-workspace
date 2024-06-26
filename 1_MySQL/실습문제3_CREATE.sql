@@ -34,7 +34,7 @@ CREATE TABLE book(
     bk_author VARCHAR(30) NOT NULL,
     bk_price INT,
     bk_pub_no INT,
-    FOREIGN KEY (bk_pub_no) REFERENCES publisher(pub_no)
+    FOREIGN KEY (bk_pub_no) REFERENCES publisher(pub_no) ON DELETE CASCADE
 );
 INSERT INTO book(bk_no, bk_title, bk_author, bk_price, bk_pub_no)
 VALUES('1','개발자를 위한 생각의 정리, 문서 작성법', '카이마이 미즈히로', '20000', '1');
@@ -45,8 +45,7 @@ VALUES('3','개발자가 영어도 잘해야 하나요?', '최희철', '27000', 
 INSERT INTO book(bk_no, bk_title, bk_author, bk_price, bk_pub_no)
 VALUES('4','피플웨어', '톰 드마르코', '16800', '2');
 INSERT INTO book(bk_no, bk_title, bk_author, bk_price, bk_pub_no)
-VALUES('5','그로스 
-해킹', '라이언 홀리데이', '13800', '3');
+VALUES('5','그로스 해킹', '라이언 홀리데이', '13800', '3');
 
 SELECT * FROM book;
 
@@ -99,6 +98,10 @@ CREATE TABLE rent (
     rent_book_no INT,
     FOREIGN KEY (rent_book_no) REFERENCES book(bk_no) ON DELETE SET NULL,
     rent_date DATE
+-- ALTER TABLE rent ADD CONSTRAINT member_no_fk
+-- 		FOREIGN KEY(rent_mem_no) REFERENCES member(member_no) ON DELETE SET NULL;
+-- ALTER TABLE rent ADD CONSTRAINT book_no_fk
+-- 		FOREIGN KEY(rent_book_no) REFERENCES book(bk_no) ON DELETE SET NULL;
 );
 INSERT INTO rent VALUES('1', '1', '2', current_date());
 INSERT INTO rent VALUES('2', '1', '3', current_date());
