@@ -8,7 +8,7 @@ public class OperatorPractice {
 	
 	public static void main(String[] args) {
 		OperatorPractice variable = new OperatorPractice();
-		variable.method6();
+		variable.method7();
 	}
 
 	//모든 사람이 연필을 골고루 나눠가지려고 한다. 인원 수와 연필 개수를 입력 받고 
@@ -83,7 +83,7 @@ public class OperatorPractice {
 		System.out.print("바구니의 크기 : ");
 		int size = sc.nextInt();
 		
-		String result = 
+		System.out.println(apple % size == 0 ? apple / size : apple / size + 1);
 	}
 	
 }
