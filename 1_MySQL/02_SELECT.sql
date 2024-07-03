@@ -335,7 +335,7 @@ FROM employee
 WHERE job_code IN ('J7', 'J2') AND salary >= 2000000;
 
 -- 2. 사수가 없고 부서배치도 받지 않은 사원들의 사원명(emp_name),
---    사수사번(manager_id), 부서코드(dept_code) 조회 
+--    사수사번(manager_id), 부서코드(dept_code) 조회
 SELECT emp_name, manager_id, dept_code
 FROM employee
 WHERE manager_id IS NULL AND dept_code IS NULL;
@@ -351,7 +351,7 @@ WHERE salary * 12 >= 40000000 AND bonus IS NULL;
 SELECT emp_id, emp_name, hire_date, dept_code
 FROM employee
 WHERE hire_date >= '1995-01-01'
-	AND dept_code IS NULL
+	AND dept_code IS NOT NULL
     ORDER BY hire_date;
 
 -- 5. 급여가 200만원 이상 500만원 이하이고 입사일이 '2001-01-01' 이상이고 

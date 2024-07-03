@@ -1,7 +1,7 @@
 /*
 	JOIN
     - 두 개 이상의 테이블에서 데이터를 조회하고자 할 때 사용하는 구문
-    - 조회 결과는 하나의 결과물(RESULT SET)으로 나옴
+    - 조회 결과는 하나의 결과물(RESULT SET)로 나옴
     - 관계형 데이터베이스는 최소한의 데이터로 각각의 테이블에 담고 있음
 	  (중복을 최소화하기 위해 최대한 쪼개서 관리)
       부서 데이터는 부서 테이블, 사원에 대한 데이터는 사원 테이블, 직급 테이블 등...
@@ -248,7 +248,6 @@ WHERE emp_no LIKE '7_____-2%' AND emp_name LIKE '전%';
 -- 3. 보너스를 받은 직원들의 직원명, 보너스, 연봉, 부서명, 근무지역 조회 
 SELECT emp_name, bonus, format((salary + salary * bonus) *12, 0), dept_title, local_name
 FROM employee
-	JOIN job USING (job_code)
     JOIN department ON (dept_code = dept_id)
     JOIN location ON (local_code = location_id)
 WHERE bonus IS NOT NULL;
