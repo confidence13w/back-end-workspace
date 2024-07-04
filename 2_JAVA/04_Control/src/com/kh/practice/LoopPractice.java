@@ -1,5 +1,7 @@
 package com.kh.practice;
 
+import java.nio.file.spi.FileSystemProvider;
+import java.util.Arrays;
 import java.util.Scanner;
 
 class LoopPractice {
@@ -12,8 +14,8 @@ class LoopPractice {
 //		p.method2();
 //		p.method3();
 //		p.method4();
-		p.method5();
-//		p.method6();
+//		p.method5();
+		p.method6();
 	}
  
     /*
@@ -36,7 +38,8 @@ class LoopPractice {
 
     // 1+(-2)+3+(-4)+...과 같은 식으로 계속 더해나갔을 때, 몇까지 더해야 총합이 100 이상 되는지 출력하시오.
      public void method2() {
-    	    int sum = 0;
+    	 /*   
+    	 int sum = 0;
     	    int number = 1;
     	    int count;
 
@@ -49,6 +52,23 @@ class LoopPractice {
     	        number++;
     	    }
     	    System.out.println("총합이 100 이상이 되는 때: " + count);
+    	   */
+    	 
+    	    int sum = 0;
+    	    int num = 1;
+    	    
+    	    while(true) {
+    	    	if(num % 2 == 0) {
+    	    		sum -= num;
+    	    	} else {
+    	    		sum += num;
+    	    	}
+    	    	if(sum >= 100) {
+    	     	   System.out.println(num);
+    	     	   break;
+    	    	}
+    	    	num++;
+    	    }
     	}
 
     /*
@@ -86,11 +106,10 @@ class LoopPractice {
         0
      */
     public void method4() {
-    	int random = (int) (Math.random() * 10);
-    	
     	while(true) {
-    	System.out.println(random);
-		if(random == 0) {
+        	int random = (int) (Math.random() * 11);
+        	System.out.println(random);
+        	if(random == 0) {
 			break;
 			}
     	}
@@ -107,28 +126,20 @@ class LoopPractice {
         6 : 0
      */
     public void method5() {
-    	int random = (int) (Math.random() * 10 - 4);
-    	System.out.println(random);
+    	int[] dice = new int[6];
+    	
+    	for(int i = 0; i < 10; i++) {
+    		int random = (int) (Math.random() * 6); // 1 ~ 6 -> 0 ~ 5
+    		// --> random : 1(0) --> dice[0]
+    		// --> random : 2(1) --> dice[1]
+    		dice[random]++;
+    	}
+    	
+    	for(int i = 0; i < dice.length; i++) {
+    		System.out.println((i+1) + " : " + dice[i]);
+    	}
     }
 
-        public void method5() {
-          
-            int[] counts = new int[6];
-
-            Random random = new Random();
-
-            for (int i = 0; i < 10; i++) {
-
-                int diceRoll = random.nextInt(6) + 1;
-
-                counts[diceRoll - 1]++;
-            }
-
-            for (int j = 0; j < 6; j++) {
-
-                System.out.println((j + 1) + " : " + counts[j]);
-            }
-        }
 
     /*
         사용자의 이름을 입력하고 컴퓨터와 가위바위보를 하세요. 
@@ -153,12 +164,44 @@ class LoopPractice {
 	    비긴 횟수 : 1, 진 횟수 : 1, 이긴 횟수 : 1
     */
     public void method6() {
+    	String[] rps = {"가위", "바위", "보"};
+    	int win = 0;
+    	int lose = 0;
+    	int draw = 0;
     	System.out.print("당신의 이름을 입력해주세요 : ");
     	String name = sc.nextLine();
-    	System.out.print("가위바위보 : ");
-    	String rsp = sc.nextLine();
     	
-    	
+    	while(true) {
+    		System.out.print("가위바위보 : ");
+    		String input = sc.nextLine();
+    		
+    		// 0 - 가위, 1 - 바위, 2 - 보
+    		int computer = (int) (Math.random() * 3);
+			System.out.println("컴퓨터 :" + rps[computer]);
+    		
+    		System.out.println(name + " : " + input);
+    		
+    		// 배열에서 값으로 인덱스 찾기 -> 사용자가 입력한 값을 숫자로!
+    		int number = Arrays.asList(rps).indexOf(input);
+    		
+    		if(computer == number) {
+    			// 비겼을 경우
+    			System.out.println("비겼습니다.");
+    			draw++;
+    		} else if((number == 0 && computer == 2)
+    				|| (number == 1 && computer == 0)
+    				|| (number == 2 && computer == 1)) {
+    			// 이겼을 경우
+    			System.out.println("이겼습니다!");
+    			win++;
+    			break;
+    		} else {
+    			// 졌을 경우
+    			System.out.println("졌습니다.");
+    			lose++;
+    		}
+    	}
+    	System.out.println("비긴 횟수 : " + draw + ", 진 횟수 : " + lose + ", 이긴 횟수 : " + win);
     	
     }
 
