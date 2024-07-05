@@ -22,10 +22,10 @@ public class Application {
 		Card.width = 50;
 		card2.height = 90;
 		
-		System.out.println("첫 번째 카드는 " + card1.kind + " " + card1.number + "이며, "
+		System.out.println("첫번째 카드는 " + card1.kind + " " + card1.number + "이며, "
 							+ "크기는 " + card1.width + " X " + card1.height + " 입니다.");
-		System.out.println("두 번째 카드는 " + card2.kind + " " + card2.number + "이며, "
-							+ "크기는 " + card2.width + " X " + card2.height + " 입니다.");
+		System.out.println("두번째 카드는 " + card2.kind + " " + card2.number + "이며, "
+				+ "크기는 " + card2.width + " X " + card2.height + " 입니다.");
 	}
 
 }

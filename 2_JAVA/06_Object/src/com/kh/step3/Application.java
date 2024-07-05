@@ -22,7 +22,7 @@ public class Application {
 		System.out.println("더하기 : " + c.add());
 		System.out.println("빼기 : " + c.substract());
 		System.out.println("곱하기 : " + c.multiply(100, 200));
-		System.out.println("결과값 : " + Calculator.divide(c.b, c.a));
+		System.out.println("나누기 : " + Calculator.divide(c.b, c.a));
 		
 		System.out.println("팩토리얼 : " + c.factorial(5));
 		System.out.println("팩토리얼 : " + c.factorial2(5));

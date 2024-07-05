@@ -1,7 +1,7 @@
 package com.kh.step3.model;
 
 public class Calculator {
-	
+
 	/*
 	 * 메서드(method)
 	 * - 작업을 수행하기 위한 명령문의 집합
@@ -32,8 +32,6 @@ public class Calculator {
 	
 	// 두 수의 곱을 구하는 기능 : multiply
 	public int multiply(int a, int b) {
-		System.out.println("a : " + a);
-		System.out.println("b : " + b);
 		return a * b;
 	}
 	
@@ -43,11 +41,10 @@ public class Calculator {
 	 * 		- 인스턴스 변수나 인스턴스 메서드와 관련된 작업을 하는 메서드
 	 * 2. 클래스 메서드 (static 메서드)
 	 * 		- 객체 생성 없이 '클래스명.메서드명()' 호출
-	 *      - 언스턴스 변수나 인스턴스 메서드와 관련 없는 작업을 하는 메서드
+	 *      - 인스턴스 변수나 인스턴스 메서드와 관련 없는 작업을 하는 메서드
 	 * */
 	// 두 수의 몫과 나머지를 구하는 기능 : divide
 	// 결과값 : 몫은 3, 나머지는 2
-
 	public static String divide(int a, int b) {
 		return "몫은 " + quotient(a, b) + ", 나머지는 " + remainder(a, b);
 	}
@@ -67,16 +64,17 @@ public class Calculator {
 	 * 1! = 1
 	 * 2! = 2 X 1 = 2
 	 * 3! = 3 X 2 X 1 = 6
-	 * n! = n X (n-1) X (n-2) X ... X 1 
+	 * n! = n X (n-1) X (n-2) X ... X 1
 	 * */
 	public int factorial(int n) {
 		int result = 1;
 		
-//			System.out.println(n);
-			for(int i = n; i > 0; i--) {
-				result *= i;
-			}
-			
+		//System.out.println(n);
+		// 5 x 4 x 3 x 2 x 1
+		for(int i = n; i > 0; i--) {
+			result *= i;
+		}
+		
 		return result;
 	}
 	
@@ -93,4 +91,7 @@ public class Calculator {
 		
 		return result;
 	}
+	
+	
+	
 }
