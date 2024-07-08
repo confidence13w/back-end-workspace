@@ -21,11 +21,11 @@ import com.kh.inheritance.parent.Product;
  *   - 부모 클래스의 생성자, 초기화 블록은 상속되지 않는다.
  *     -> 자식 클래스 생성 시에 부모 클래스 생성자가 먼저 실행
  *   - 부모의 private 변수는 상속은 되지만 직접 접근은 불가능
- *     -> Getter / Setter 사용해서 간접 접근 가능
+ *     -> Getter / Setter 사용해서 간접 접근 가능  
  * */
 
 public class Notebook extends Product {
-
+	
 	private String cpu;
 
 	public Notebook() {
@@ -45,7 +45,7 @@ public class Notebook extends Product {
 		// super.price = price; // 부모가 private - 직접 접근 X
 		
 		// 3. 부모의 setter 메서드를 호출해서 초기화
-		//	  - 부모 클래스에서 setter 메서드를 제공하면
+		//    - 부모 클래스에서 setter 메서드를 제공하면
 		//      자식 클래스에서 부모의 setter 메서드를 통해 초기화 가능
 		super.setBrand(brand);
 		this.setpCode(pCode);
@@ -59,16 +59,17 @@ public class Notebook extends Product {
 	public void setCpu(String cpu) {
 		this.cpu = cpu;
 	}
-
+	
 	/*
 	 * 오버라이딩(overriding)
 	 * - 자식 클래스가 상속받은 부모 클래스의 메서드를 재정의하는 것
 	 * */
-	
+
 	@Override
 	public String toString() {
 		return super.toString() + ", Notebook [cpu=" + cpu + "]";
 	}
+
 	
 	
 	

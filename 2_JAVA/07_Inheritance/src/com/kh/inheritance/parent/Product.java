@@ -7,7 +7,7 @@ package com.kh.inheritance.parent;
  * */
 
 public class Product extends Object {
-
+	
 	public String brand; // 브랜드
 	String pCode; // 상품 코드
 	protected String name;  // 상품명
@@ -15,9 +15,7 @@ public class Product extends Object {
 	
 	public Product() {
 	}
-
 	public Product(String brand, String pCode, String name, int price) {
-		super();
 		this.brand = brand;
 		this.pCode = pCode;
 		this.name = name;
@@ -53,5 +51,5 @@ public class Product extends Object {
 	public String toString() {
 		return "Product [brand=" + brand + ", pCode=" + pCode + ", name=" + name + ", price=" + price + "]";
 	}
-	
+
 }

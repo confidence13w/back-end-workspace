@@ -3,7 +3,7 @@ package com.kh.inheritance.child;
 import com.kh.inheritance.parent.Product;
 
 public class SmartPhone extends Product {
-
+	
 	private String agency; // 통신사
 
 	public SmartPhone() {
@@ -27,5 +27,5 @@ public class SmartPhone extends Product {
 		return super.toString() + ", SmartPhone [agency=" + agency + "]";
 	}
 	
-	
+
 }
