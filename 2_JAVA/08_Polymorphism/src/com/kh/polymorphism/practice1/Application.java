@@ -12,9 +12,9 @@ public class Application {
 	}
 	
 	public void mainMenu() {
-		System.out.println("이름 : ");
+		System.out.print("이름 : ");
 		String name = sc.nextLine();
-		System.out.println("나이 : ");
+		System.out.print("나이 : ");
 		int age = Integer.parseInt(sc.nextLine());
 		System.out.println("==== 메뉴 ====");
 		
@@ -42,6 +42,15 @@ public class Application {
 			}
 		}
 
+	}
+
+	private void exit() {
+	}
+
+	private void lent() {
+	}
+
+	private void mypage() {
 	}
 	
 

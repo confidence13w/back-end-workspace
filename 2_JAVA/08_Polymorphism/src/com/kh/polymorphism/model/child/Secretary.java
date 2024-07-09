@@ -3,15 +3,14 @@ package com.kh.polymorphism.model.child;
 import com.kh.polymorphism.model.parent.Employee;
 
 public class Secretary extends Employee {
-
+	
 	private String boss;
 
 	public Secretary() {
-
 	}
 
 	public Secretary(String name, int salary, String boss) {
-		super();
+		super(name, salary);
 		this.boss = boss;
 	}
 
@@ -28,4 +27,7 @@ public class Secretary extends Employee {
 		return "Secretary [boss=" + boss + ", name=" + getName() + ", salary=" + getSalary() + "]";
 	}
 	
+	
+	
+
 }
