@@ -5,8 +5,10 @@ public class Book {
 	private boolean coupon;
 	private int acessAge;
 	
+	public Book() {
+	}
+
 	public Book(String title, boolean coupon, int acessAge) {
-		super();
 		this.title = title;
 		this.coupon = coupon;
 		this.acessAge = acessAge;
