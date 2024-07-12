@@ -1,46 +1,38 @@
 package com.kh.polymorphism.practice1.model;
 
 public class Book {
+	
 	private String title;
 	private boolean coupon;
-	private int acessAge;
-	
+	private int accessAge;
 	public Book() {
 	}
-
-	public Book(String title, boolean coupon, int acessAge) {
+	public Book(String title, boolean coupon, int accessAge) {
 		this.title = title;
 		this.coupon = coupon;
-		this.acessAge = acessAge;
+		this.accessAge = accessAge;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public boolean isCoupon() {
 		return coupon;
 	}
-
 	public void setCoupon(boolean coupon) {
 		this.coupon = coupon;
 	}
-
-	public int getAcessAge() {
-		return acessAge;
+	public int getAccessAge() {
+		return accessAge;
 	}
-
-	public void setAcessAge(int acessAge) {
-		this.acessAge = acessAge;
+	public void setAccessAge(int accessAge) {
+		this.accessAge = accessAge;
 	}
-
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", coupon=" + coupon + ", acessAge=" + acessAge + "]";
+		return "Book [title=" + title + ", coupon=" + coupon + ", accessAge=" + accessAge + "]";
 	}
 	
 	

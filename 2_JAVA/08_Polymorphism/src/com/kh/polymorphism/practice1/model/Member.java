@@ -1,5 +1,6 @@
 package com.kh.polymorphism.practice1.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Member {
@@ -7,17 +8,16 @@ public class Member {
 	private String name;
 	private int age;
 	private int coupon;
-	private Book[] booklist = new Book[2];
+	private ArrayList<Book> bookList = new ArrayList<>();
 	
 	public Member() {
 	}
 
-	public Member(String name, int age, int coupon, Book[] booklist) {
-		super();
+	public Member(String name, int age, int coupon, ArrayList<Book> bookList) {
 		this.name = name;
 		this.age = age;
 		this.coupon = coupon;
-		this.booklist = booklist;
+		this.bookList = bookList;
 	}
 
 	public String getName() {
@@ -44,18 +44,17 @@ public class Member {
 		this.coupon = coupon;
 	}
 
-	public Book[] getBooklist() {
-		return booklist;
+	public ArrayList<Book> getBookList() {
+		return bookList;
 	}
 
-	public void setBooklist(Book[] booklist) {
-		this.booklist = booklist;
+	public void setBookList(ArrayList<Book> bookList) {
+		this.bookList = bookList;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [name=" + name + ", age=" + age + ", coupon=" + coupon + ", booklist="
-				+ Arrays.toString(booklist) + "]";
+		return "Member [name=" + name + ", age=" + age + ", coupon=" + coupon + ", bookList=" + bookList + "]";
 	}
 	
 	
