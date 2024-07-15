@@ -69,11 +69,5 @@ public class Application {
 		int select = Integer.parseInt(sc.nextLine());
 		System.out.println(bc.rentBook(books.get(select-1)));
 	}
-	
-	
-	
-	
-	
-	
 
 }
