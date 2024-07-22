@@ -70,7 +70,6 @@ CREATE TABLE member(
     status VARCHAR(30) DEFAULT 'N',
     enroll_date DATE,
 	CONSTRAINT gender CHECK (gender IN ('M', 'F')),
-    CONSTRAINT gender_not_null CHECK (gender IS NOT NULL),
     CONSTRAINT status CHECK (status IN ('N', 'Y')),
     CONSTRAINT status_not_null CHECK (status IS NOT NULL)
 );
