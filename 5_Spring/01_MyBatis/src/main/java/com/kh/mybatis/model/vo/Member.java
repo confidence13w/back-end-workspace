@@ -1,4 +1,4 @@
-package com.kh.model.vo;
+package com.kh.mybatis.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
