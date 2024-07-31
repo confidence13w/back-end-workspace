@@ -1,5 +1,6 @@
 package com.kh.mybatis.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +14,9 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MemberController {
-
-	private MemberService service;
 	
-	public MemberController(MemberService service) {
-		this.service = service;
-	}
+	@Autowired
+	private MemberService service;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -63,9 +61,10 @@ public class MemberController {
 		Member member = (Member) session.getAttribute("vo");
 		
 		if(vo.getId()==null) vo.setId(member.getId());
+		System.out.println(vo);
 		service.update(vo);
 		
-		if(vo.getName()==null) vo.setName(member.getName());		
+		if(vo.getName()==null) vo.setName(member.getName());
 		session.setAttribute("vo", vo);
 
 		return "redirect:/";

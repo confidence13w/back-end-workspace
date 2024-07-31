@@ -11,7 +11,7 @@ import mapper.MemberMapper;
 
 @Service
 public class MemberService {
-
+	
 	@Autowired
 	private MemberMapper mapper;
 	
@@ -26,9 +26,9 @@ public class MemberService {
 	public Member login(Member member) {
 		return mapper.login(member);
 	}
-
+	
 	public void update(Member member) {
 		mapper.update(member);
 	}
-	
+
 }
