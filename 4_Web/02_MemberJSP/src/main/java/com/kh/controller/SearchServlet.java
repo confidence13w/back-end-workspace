@@ -19,7 +19,7 @@ public class SearchServlet extends HttpServlet {
 		// 1. 폼 값 받는다.
 		String id = request.getParameter("id");
 		
-		// 2. DAO
+		// 2. DAO -
 		MemberDAO dao = new MemberDAO();
 		Member member = null;
 		try {
