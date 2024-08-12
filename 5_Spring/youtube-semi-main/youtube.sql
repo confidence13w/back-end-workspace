@@ -93,8 +93,3 @@ VALUES('http://192.168.10.51:8082/video/day6.mp4',
     2);
     
 SELECT * FROM video;
-
-
-
-
-
