@@ -5,7 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+@Data @NoArgsConstructor 
+@AllArgsConstructor @Builder
 public class Subscribe {
 	private int subCode;
 	private String id; //member

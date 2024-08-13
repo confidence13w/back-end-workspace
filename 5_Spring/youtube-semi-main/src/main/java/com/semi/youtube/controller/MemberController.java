@@ -46,4 +46,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	// 회원가입
+	
+	
 }

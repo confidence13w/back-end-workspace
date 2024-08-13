@@ -9,7 +9,7 @@ import mapper.MemberMapper;
 
 @Service
 public class MemberService {
-	
+
 	@Autowired
 	private MemberMapper member;
 	

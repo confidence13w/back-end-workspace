@@ -14,16 +14,18 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class VideoController {
-
+	
 	@Autowired
 	private VideoService video;
-	
+
 	// 좋아요
 	@ResponseBody
 	@PostMapping("/like")
 	public void like(HttpServletRequest request, int code) {
+		System.out.println(code);
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("vo");
+		
 		VideoLike data = VideoLike.builder()
 				.id(member.getId())
 				.videoCode(code)
@@ -38,6 +40,16 @@ public class VideoController {
 	public void unlike(int code) {
 		video.unlike(code);
 	}
+	
+	
+	
+	// 댓글 작성
+	
+	// 댓글 수정
+	
+	// 댓글 삭제
+	
+	
 	
 	// 구독
 	

@@ -21,6 +21,7 @@ public class PageController {
 	@Autowired
 	private VideoService video;
 	
+	// 비디오 전체 목록 보기
 	@GetMapping("/")
 	public String index(Model model) {
 		System.out.println(video.allVideo());
@@ -45,7 +46,7 @@ public class PageController {
 		VideoLike like = null;
 		Subscribe sub = null;
 		if(member!=null) {
-			like.checkLike(VideoLike.builder()
+			like = video.checkLike(VideoLike.builder()
 					.id(member.getId())
 					.videoCode(videoCode)
 					.build());
@@ -53,16 +54,17 @@ public class PageController {
 					.id(member.getId())
 					.channelCode(data.getChannel().getChannelCode())
 					.build());
-					
 		}
-
+		
 		model.addAttribute("like", like);
+		model.addAttribute("sub", sub);
 		
 		return "detail";
 	}
-
+	
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
+
 }

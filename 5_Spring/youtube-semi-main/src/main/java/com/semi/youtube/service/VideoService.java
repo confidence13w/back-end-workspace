@@ -22,7 +22,7 @@ public class VideoService {
 	@Autowired
 	private VideoLikeMapper like;
 	
-	@Autowired
+	@Autowired 
 	private SubscribeMapper sub;
 	
 	public List<Video> allVideo() {
@@ -60,4 +60,5 @@ public class VideoService {
 	public void cancel(int code) {
 		sub.cancel(code);
 	}
+	
 }

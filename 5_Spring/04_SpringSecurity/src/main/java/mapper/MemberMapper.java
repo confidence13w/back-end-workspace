@@ -2,12 +2,12 @@ package mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.semi.youtube.model.vo.Member;
+import com.kh.security.model.vo.Member;
 
 @Mapper
 public interface MemberMapper {
-	
-	Member check(String id);
-	Member login(Member vo);
+
+	void register(Member vo);
+	Member login(String id);
 	
 }

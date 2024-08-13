@@ -8,6 +8,7 @@
 <title>YouTube</title>
 <link rel="icon"
 	href="https://www.youtube.com/s/desktop/ae4ecf92/img/favicon_144x144.png" />
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/detail.css"/>
 </head>
 <body>
@@ -65,7 +66,7 @@
 					code: ${video.videoCode}
 				},
 				success: function() {
-					location.reload;
+					location.reload();
 				},
 				error: function() {
 					alert("로그인부터 하세요!");
@@ -75,28 +76,20 @@
 	</script>
 	<c:if test="${not empty like}">
 	<script>
-		$("#unlike").click(() => {
-			$.ajax({
-				type: "post",
-				url: "/unlike",
-				data: {
-					code:${like.likeCode}
-				},
-				success: function() {
-					location.reload;
-				}
-			})
+	$("#unlike").click(() => {
+		$.ajax({
+			type: "post",
+			url: "/unlike",
+			data: {
+				code: ${like.likeCode}
+			}, 
+			success: function() {
+				location.reload();
+			}
 		});
+	})
 	</script>
 	</c:if>
 	<script src="${pageContext.request.contextPath}/js/time.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
