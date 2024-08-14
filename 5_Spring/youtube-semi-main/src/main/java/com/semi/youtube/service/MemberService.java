@@ -22,4 +22,9 @@ public class MemberService {
 	public Member login(Member vo) {
 		return member.login(vo);
 	}
+	
+	public void signup(Member vo) {
+		vo.setPassword(bcpe.encode(vo.getPassword()));
+		member.signup(vo);
+	}
 }
