@@ -44,7 +44,7 @@
 			</div>
 			<button type="submit" class="btn btn-dark">회원가입</button>
 		</form>
-		<script src="${pageContext.request.contextPath}/css/login.css"></script>
 	</div>
+	<!-- <script src="${pageContext.request.contextPath}/js/signup.js"></script> -->
 </body>
 </html>
