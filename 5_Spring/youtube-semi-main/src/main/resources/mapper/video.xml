@@ -20,6 +20,7 @@
 	<select id="allVideo" resultMap="videoMap">
 		SELECT * FROM video 
 		JOIN channel USING (channel_code)
+		LIMIT #{offset}, #{limit}
 	</select>
 	
 	<select id="detail" parameterType="Integer" resultMap="videoMap">

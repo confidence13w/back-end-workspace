@@ -1,4 +1,4 @@
-package com.kh.upload.model.vo;
+package com.semi.youtube.model.vo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

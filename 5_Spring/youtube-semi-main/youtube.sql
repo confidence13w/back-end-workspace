@@ -66,10 +66,10 @@ CREATE TABLE video_like(
 );
 
 INSERT INTO channel(channel_img, channel_name, id)
-VALUES('http://192.168.10.51:8082/channel/akmu.jpg', 'AKMU', 'akmu');
+VALUES('http://192.168.10.51:8082/channel/akmu.jpg', 'AKMU', 'confidence13');
 
 INSERT INTO channel(channel_img, channel_name, id)
-VALUES('http://192.168.10.51:8082/channel/dingo.jpg', '딩고 뮤직', 'akmu');
+VALUES('http://192.168.10.51:8082/channel/dingo.jpg', '딩고 뮤직', 'confidence13');
 
 SELECT * FROM channel;
 
