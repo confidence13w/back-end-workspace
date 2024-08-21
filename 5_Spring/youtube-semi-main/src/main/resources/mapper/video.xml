@@ -17,7 +17,7 @@
 		</association>
 	</resultMap>
 
-	<select id="allVideo" resultMap="videoMap">
+	<select id="allVideo" parameterType="Paging" resultMap="videoMap">
 		SELECT * FROM video 
 		JOIN channel USING (channel_code)
 		LIMIT #{offset}, #{limit}
@@ -30,6 +30,4 @@
 	</select>
 
 </mapper>
-
-
 

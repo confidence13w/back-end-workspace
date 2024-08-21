@@ -40,6 +40,7 @@ public class PageController {
 		return video.allVideo(paging);
 	}
 	
+	
 	// 비디오 1개 보여주기
 	// 좋아요 관련 정보 가져오기
 	// 구독자수, 구독 관련 정보 가져오기
