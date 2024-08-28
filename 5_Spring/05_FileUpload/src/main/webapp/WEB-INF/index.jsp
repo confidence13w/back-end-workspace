@@ -16,7 +16,7 @@
 	</form>
 	
 	<h2>Multi File Upload Test</h2>
-	<form action="/multiUpload" method="post" emctype="multipart/form-data">
+	<form action="/multiUpload" method="post" enctype="multipart/form-data">
 		<input type="file" name="files" multiple accept="image/*"><br>
 		<input type="submit" value="파일업로드"/>
 	</form>

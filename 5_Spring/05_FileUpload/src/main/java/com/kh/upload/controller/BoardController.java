@@ -29,7 +29,7 @@ public class BoardController {
 
 	@GetMapping("/")
 	public String index() {
-		return "index";
+		return "index"; // "index"라는 이름의 뷰(웹 페이지)를 반환
 	}
 
 	public String fileUpload(MultipartFile file) throws IllegalStateException, IOException {
@@ -49,7 +49,7 @@ public class BoardController {
 		System.out.println("파일 사이즈 : " + file.getSize());
 		System.out.println("파일 파라미터명 : " + file.getName());
 
-		fileUpload(file);
+		fileUpload(file); // 파일 정보를 출력하고, fileUpload 메서드를 호출하여 파일을 저장
 
 		return "redirect:/";
 	}
@@ -58,7 +58,7 @@ public class BoardController {
 	public String multiUpload(List<MultipartFile> files) throws IllegalStateException, IOException {
 
 		for (MultipartFile file : files) {
-			fileUpload(file);
+			fileUpload(file); // 파일 리스트를 받아 각각의 파일을 fileUpload 메서드를 통해 저장
 		}
 
 		return "redirect:/";
@@ -75,8 +75,8 @@ public class BoardController {
 			b.setFormatDate(formatDate);
 		}
 
-		model.addAttribute("list", list);
-		model.addAttribute("paging", new Paging(paging.getPage(), service.total()));
+		model.addAttribute("list", list); // 글 목록을 뷰에 전달
+		model.addAttribute("paging", new Paging(paging.getPage(), service.total())); // 페이지 정보를 뷰에 전달
 
 		return "list";
 	}
@@ -89,15 +89,15 @@ public class BoardController {
 	@PostMapping("/write")
 	public String write(Board vo) throws IllegalStateException, IOException {
 		// 1. 파일 업로드 처리
-		String url = fileUpload(vo.getFile());
-		vo.setUrl(url);
+		String url = fileUpload(vo.getFile()); // 파일 업로드 메서드 호출
+		vo.setUrl(url); // 파일 URL을 Board 객체에 설정
 
 		// 2. 해당 파일 URL과 함께 title, content DB에 저장
-		service.insert(vo);
+		service.insert(vo); // BoardService의 insert 메서드를 호출하여 DB에 저장
 
 		System.out.println(vo);
 
-		return "redirect:/view?no=" + vo.getNo();
+		return "redirect:/view?no=" + vo.getNo(); // 작성한 글 페이지로 리다이렉트
 	}
 
 	@GetMapping("/view")
@@ -115,15 +115,15 @@ public class BoardController {
 			// 파일이 비어있지 않다면 기존 이미지 삭제(delete)
 			if(vo.getUrl()!=null) { // 기존 이미지가 null이 아닌 경우
 				File file = new File(path + vo.getUrl());
-				file.delete();
+				file.delete(); // 기존 파일 삭제
 			}
 			
 			// 새 이미지 등록
-			String url = fileUpload(vo.getFile());
-			vo.setUrl(url);
+			String url = fileUpload(vo.getFile()); // 새 파일 업로드
+			vo.setUrl(url); // 새 파일 URL을 Board 객체에 설정
 		}
 
-		service.update(vo);
+		service.update(vo); // BoardService의 update 메서드를 호출하여 DB에서 업데이트
 
 		return "redirect:/list";
 	}
@@ -132,13 +132,12 @@ public class BoardController {
 	public String delete(int no) {
 		
 		// 업로드한 파일 삭제 (필요한 건 URL)
-		Board board = service.select(no);
+		Board board = service.select(no); // 글 정보를 가져옴
 		if(board.getUrl()!=null) {
 			File file = new File(path + board.getUrl());
-			file.delete();
+			file.delete(); // 파일 삭제
 		}
-		service.delete(no);
+		service.delete(no); // BoardService의 delete 메서드를 호출하여 DB에서 삭제
 		return "redirect:/list";
 	}
-
 }
