@@ -7,7 +7,7 @@ DROP TABLE member;
 
 -- 회원
 CREATE TABLE member(
-	id VARCHAR(20) PRIMARY KEY,
+	id VARCHAR(100) PRIMARY KEY,
     password VARCHAR(60),
     email VARCHAR(50),
     phone VARCHAR(13)
